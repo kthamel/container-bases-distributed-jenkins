@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50001:50000
+    container_name: Jenkins-Master
+    volumes:
+      - /opt/Jenkins/Master/Data-Master:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  slave-1:
+    image: jenkins/ssh-agent:jdk11
+    privileged: true
+    user: root
+    container_name: slave-1
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
+
+  slave-2:
+    image: jenkins/ssh-agent:jdk11
+    privileged: true
+    user: root
+    container_name: slave-2
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
+
+  slave-3:
+    image: jenkins/ssh-agent:jdk11
+    privileged: true
+    user: root
+    container_name: slave-3
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
