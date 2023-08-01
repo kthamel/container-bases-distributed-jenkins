@@ -9,35 +9,25 @@ services:
       - 50001:50000
     container_name: Jenkins-Master
     volumes:
-      - /opt/Jenkins/Master/Data-Master:/var/jenkins_home
+      - /home/kthamel/Workspaces/Jenkins/Master/Data-Master:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
   
   slave-1:
-    image: jenkins/ssh-agent:jdk11
+    image: kthamel/jenkins-terraform
     privileged: true
     user: root
     container_name: slave-1
     expose:
       - 22
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
-
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQKXofAVSSrwsOaSOdJ8HZZVQXmCRpWYVCXrDRfnO7ceIklofpFvF1V8qA76w5jNhme3CRfR2v/yMU/D07FJy0vfZBCJRWTU44B395+lZtFyHPjIaiu2ZW7Sl6QanMwua8otOGdiZ67ziVakh7bhcEpZNl6Sk16udYXIlK7FUmHIZg6WuLTdlLnwT6SDsPnpEUZfpGWCIt2k6TBLZPX/tKsFWWI2pako30mcZGsM4KyizXEqN/YNGeikQts3ncFVzgDEhGCS/CoojgCukuiwm0EoJ2W+i8nVFn4htUO4eacnPnsjPvO45Eo+qb4MblxMWpH/o+OhVOYNPt2yic6ngx+l3xI8Hf0J5dStjNCslzIfqkh8UCfXxA8cnJxdscR4f09I4oKXd8yr00hFNoRZV/K/MBKKPi8cFb4PkaifcmA7UI1GK63CLhgK4DnSJjHQ86TA9kpCLyAdwkifux7I4utjc4Gjn1kSO8zU4bo2UIj/EBPj0puOml1QhUpvpdeGk= kthamel@g50-air.devops-workspaces.local
+      
   slave-2:
-    image: jenkins/ssh-agent:jdk11
+    image: kthamel/jenkins-terraform
     privileged: true
     user: root
     container_name: slave-2
     expose:
       - 22
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
-
-  slave-3:
-    image: jenkins/ssh-agent:jdk11
-    privileged: true
-    user: root
-    container_name: slave-3
-    expose:
-      - 22
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=Generated_Public_key
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQKXofAVSSrwsOaSOdJ8HZZVQXmCRpWYVCXrDRfnO7ceIklofpFvF1V8qA76w5jNhme3CRfR2v/yMU/D07FJy0vfZBCJRWTU44B395+lZtFyHPjIaiu2ZW7Sl6QanMwua8otOGdiZ67ziVakh7bhcEpZNl6Sk16udYXIlK7FUmHIZg6WuLTdlLnwT6SDsPnpEUZfpGWCIt2k6TBLZPX/tKsFWWI2pako30mcZGsM4KyizXEqN/YNGeikQts3ncFVzgDEhGCS/CoojgCukuiwm0EoJ2W+i8nVFn4htUO4eacnPnsjPvO45Eo+qb4MblxMWpH/o+OhVOYNPt2yic6ngx+l3xI8Hf0J5dStjNCslzIfqkh8UCfXxA8cnJxdscR4f09I4oKXd8yr00hFNoRZV/K/MBKKPi8cFb4PkaifcmA7UI1GK63CLhgK4DnSJjHQ86TA9kpCLyAdwkifux7I4utjc4Gjn1kSO8zU4bo2UIj/EBPj0puOml1QhUpvpdeGk= kthamel@g50-air.devops-workspaces.local
